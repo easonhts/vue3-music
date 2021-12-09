@@ -5,8 +5,7 @@
 import { defineComponent, ref } from 'vue'
 export default defineComponent({
   setup () {
-    var a = ref(0)
-
+    let a = ref(0)
     return { a }
   }
 })
