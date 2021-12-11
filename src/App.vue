@@ -1,13 +1,17 @@
 <template>
-  <div></div>
+  <Header />
+  <Tab />
+  <router-view v-slot="{ Component }">
+    <keep-alive>
+      <component :is="Component"></component>
+    </keep-alive>
+  </router-view>
 </template>
 <script>
-import { defineComponent, ref } from 'vue'
+import { defineComponent } from 'vue'
+import { Header, Tab } from './components'
 export default defineComponent({
-  setup () {
-    let a = ref(0)
-    return { a }
-  }
+  components: { Header, Tab }
 })
 </script>
 <style lang="less">
