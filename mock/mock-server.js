@@ -2,7 +2,7 @@
 const fs = require('fs')
 const path = require('path')
 
-const devServerMockUrlMatch = '/api'
+const devServerMockUrlMatch = /^\/api/
 
 const delay = (time) => {
   return new Promise((resolve) => {
@@ -31,9 +31,7 @@ const getMockData = (filePath) => {
 
 module.exports = (app) => {
   // '/api/test/test1'.replace(devServerMockUrlMatch, `${path.join(process.cwd(), 'mock/data')}$&`).replace(/\?.*$/, '')
-
   if (process.env.NODE_ENV === 'mock') {
-    console.info('本地Mock数据模式已开始')
     app.all(devServerMockUrlMatch, async (req, res) => {
       // const { method, originalUrl } = req
       const { originalUrl } = req

@@ -12,7 +12,17 @@ function addStyleResource(rule) {
 
 module.exports = {
   devServer: {
-    before: require('./mock/mock-server')
+    before: require('./mock/mock-server'),
+    proxy: {
+      '/api': {
+        // 服务是本地node服务 见https://github.com/Binaryify/NeteaseCloudMusicApi
+        target: 'http://localhost:3000',
+        changeOrigin: true,
+        pathRewrite: {
+          '^/api': ''
+        }
+      }
+    }
   },
   chainWebpack: (config) => {
     const types = ['vue-modules', 'vue', 'normal-modules', 'normal']

@@ -1,10 +1,11 @@
 declare namespace Music {
   namespace Utils {
     namespace Response {
-      interface Music<T = any> {
-        success: boolean
+      type Result<T> = {
+        [P in keyof T]: T[P]
+      }
+      type Music<T extends Record<string, any>> = Result<T> & {
         code: number
-        data: T
       }
 
       namespace Pagination {

@@ -1,9 +1,11 @@
 /* eslint-disable no-empty */
 import axios from 'axios'
 import type { AxiosRequestConfig, AxiosResponse } from 'axios'
-import { ERROR_CODE } from './constant'
+import { ERROR_CODE, SUCCESS_CODE } from './constant'
 
 const axiosInstance = axios.create()
+
+axiosInstance.defaults.baseURL = '/api'
 
 function addTokenInterceptor(conf: AxiosRequestConfig) {
   return conf
@@ -23,6 +25,7 @@ function loginInterceptor<T>(res: AxiosResponse<Music.Utils.Response.Music<T>>) 
     // 携带当前uri跳转登陆页
     throw new Error('强制登陆')
   }
+  return res
 }
 
 axiosInstance.interceptors.request.use(addTokenInterceptor)
@@ -31,7 +34,7 @@ const responseInterceptors = [loginInterceptor]
 
 responseInterceptors.forEach((interceptor) => axiosInstance.interceptors.response.use(interceptor))
 
-type ErrorCallback = (data: Music.Utils.Response.Music<unknown>) => any
+type ErrorCallback = (data: Music.Utils.Response.Music<any>) => any
 
 function request<T = any>(params: AxiosRequestConfig): Promise<T>
 function request<T = any, K extends ErrorCallback = ErrorCallback>(
@@ -49,9 +52,9 @@ function request<T = any, K extends ErrorCallback = ErrorCallback>(
   return axiosInstance({
     ...params
   }).then((res) => {
-    const { success, data } = res.data as Music.Utils.Response.Music<T>
-    if (success) {
-      return data
+    const { code, ...rest } = res.data as Music.Utils.Response.Music<T>
+    if (code === SUCCESS_CODE) {
+      return { ...rest } as unknown as T
     }
 
     if (errorCallback) errorCallback(res.data)

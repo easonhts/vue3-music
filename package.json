@@ -10,6 +10,9 @@
     "prepare": "husky install"
   },
   "dependencies": {
+    "@better-scroll/core": "^2.2.1",
+    "@better-scroll/observe-dom": "^2.2.1",
+    "@better-scroll/slide": "^2.2.1",
     "axios": "^0.24.0",
     "core-js": "^3.6.5",
     "postcss-px-to-viewport": "^1.1.1",
@@ -41,6 +44,6 @@
     "less-loader": "^5.0.0",
     "prettier": "^2.2.1",
     "style-resources-loader": "^1.5.0",
-    "typescript": "~4.1.5"
+    "typescript": "^4.4.4"
   }
 }
