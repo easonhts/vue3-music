@@ -9,12 +9,9 @@ declare namespace Music {
       }
 
       namespace Pagination {
-        interface Data<T> {
-          pageIndex: number
-          pageSize: number
-          hasNext: boolean
-          totalCount: number
-          list: T[]
+        type Data<T extends Record<string, any>> = Result<T> & {
+          code: number,
+          more: boolean
         }
       }
     }

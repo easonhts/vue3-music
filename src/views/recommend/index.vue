@@ -70,7 +70,7 @@ export default defineComponent({
     display: flex;
     flex-wrap: wrap;
     padding: 0 15px;
-    color: @color-text-ll;
+    color: @color-theme-d;
     .item {
       position: relative;
       width: 230px;
@@ -99,7 +99,7 @@ export default defineComponent({
         font-size: @font-size-small;
         padding: 2px 8px;
         border-radius: 16px;
-        background: @color-text-d;
+        background: @color-background-d;
       }
     }
   }

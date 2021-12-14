@@ -3,8 +3,8 @@ declare namespace Music {
     namespace Request {
       namespace Pagination {
         interface Params {
-          pageIndex: number
-          pageSize: number
+          limit: number
+          offset?: number
         }
 
         interface Result<T> {
