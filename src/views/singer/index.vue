@@ -35,7 +35,7 @@ export default defineComponent({
     const singerList = ref<Music.Api.Singer.HotList.Get.Res>()
 
     const tags = computed(() => {
-      return Object.values(selectTag.value).filter((item) => item.value !== '-1')
+      return Object.values(selectTag.value)
     })
 
     onMounted(async () => {
@@ -58,11 +58,11 @@ export default defineComponent({
     }
 
     const formatParams = () => {
-      const { area, type, alpha } = selectTag.value || {}
+      const { area, type, alpha } = selectTag.value
       return {
-        area: area.value,
-        type: type.value,
-        initial: alpha.value,
+        area: area?.value,
+        type: type?.value,
+        initial: alpha?.value,
         limit: params.limit,
         offset: params.limit * params.page
       }

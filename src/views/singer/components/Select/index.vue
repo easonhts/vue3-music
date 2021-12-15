@@ -8,7 +8,7 @@
     <div class="select-tag">
       <div class="tip-text">已选：</div>
       <div v-for="(item, key) in selectTags" :key="key">
-        <Tag v-if="item" @onDelete="handleDelete(key)" clear>
+        <Tag v-if="item" @onDelete="handleDelete(key)" :clear="clear">
           {{ item.label }}
         </Tag>
       </div>
@@ -72,6 +72,11 @@ export default defineComponent({
     }
   },
   emits: ['save', 'close'],
+  computed: {
+    clear() {
+      return Object.values(this.selectTags).filter(Boolean).length > 1
+    }
+  },
   methods: {
     handleSelect(key: string, value: { label: string; value: string }) {
       this.selectTags[key] = value
@@ -80,7 +85,7 @@ export default defineComponent({
       this.selectTags[key] = undefined
     },
     handleSave() {
-      this.$emit('save', this.selectTags)
+      this.$emit('save', JSON.parse(JSON.stringify(this.selectTags)))
       this.$emit('close')
     },
     handleClose() {

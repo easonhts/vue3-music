@@ -34,11 +34,11 @@ module.exports = (app) => {
   if (process.env.NODE_ENV === 'mock') {
     app.all(devServerMockUrlMatch, async (req, res) => {
       // const { method, originalUrl } = req
-      const { originalUrl } = req
+      const { _parsedUrl: { pathname } } = req
 
       try {
         // 获取mock数据本地绝对路径
-        const filePath = originalUrl.replace(devServerMockUrlMatch, `${path.join(process.cwd(), 'mock/data')}`)
+        const filePath = pathname.replace(devServerMockUrlMatch, `${path.join(process.cwd(), 'mock/data')}`)
 
         await delay(500)
 
