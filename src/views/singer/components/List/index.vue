@@ -3,7 +3,7 @@
     <Scroll class="singer-content">
       <ul>
         <li v-for="item in data" :key="item.id" class="singer-info">
-          <img class="photo" :src="item.img1v1Url" />
+          <LazyImg class="photo" :src="item.img1v1Url" />
           <div class="name">{{ item.name }}</div>
         </li>
       </ul>

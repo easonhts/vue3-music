@@ -8,7 +8,7 @@
           <div class="title">推荐歌单</div>
           <div class="list">
             <figure v-for="item in recommendList" :key="item.id" class="item">
-              <img class="img" :src="item.picUrl" />
+              <LazyImg class="img" :src="item.picUrl" />
               <div class="play-count">{{ item.playCount }}万</div>
               <figcaption class="desc">
                 {{ item.name }}
