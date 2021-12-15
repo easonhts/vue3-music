@@ -104,6 +104,7 @@ export default defineComponent({
   right: 0;
   bottom: 0;
   padding: 0 30px;
+  transform-origin: right bottom;
 
   .tip-text {
     font-size: @font-size-medium;

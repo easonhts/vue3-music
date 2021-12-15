@@ -8,14 +8,16 @@
     </div>
     <List :data="singerList" />
   </div>
-  <Select v-show="bol" @close="toogle" @save="handleSave" />
+  <transition name="fly">
+    <Select v-show="bol" @close="toogle" @save="handleSave" />
+  </transition>
 </template>
 
 <script lang="ts">
 import { defineComponent, ref, computed, onMounted, reactive } from 'vue'
-import { HOT, HOT_SINGER_MAP } from '@/lib/constant'
+import { ALPHA_TYPE } from '@/lib/constant'
 import { useBoolean } from '@/hooks/index'
-import { getHotSingerList, getSingerList } from '@/service/singer'
+import { getSingerList } from '@/service/singer'
 
 import Tag from './components/Tag/index.vue'
 import Select from './components/Select/index.vue'
@@ -28,7 +30,7 @@ export default defineComponent({
   setup() {
     const { bol, toogle } = useBoolean(false)
     const selectTag = ref<SelectTags>({
-      [HOT]: HOT_SINGER_MAP
+      alpha: ALPHA_TYPE[0]
     })
     const params = reactive({ limit: 30, page: 0 })
 
@@ -39,8 +41,7 @@ export default defineComponent({
     })
 
     onMounted(async () => {
-      const { artists } = await getHotSingerList({ limit: params.limit })
-      singerList.value = artists
+      fetchSingerList()
     })
 
     const handleSave = (val: SelectTags) => {

@@ -54,6 +54,6 @@ export const ALPHA_TYPE = [
   { label: 'Z', value: 'z' }
 ]
 
-export const HOT = 'hot'
+// export const HOT = 'hot'
 
-export const HOT_SINGER_MAP = { label: '热门', value: HOT }
+// export const HOT_SINGER_MAP = { label: '热门', value: HOT }
