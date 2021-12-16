@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="operation">
-      <div class="close" @click="handleClose">关闭</div>
+      <div class="close" @click="handleClose"><i class="icon-back"></i></div>
       <div class="save" @click="handleSave">保存</div>
     </div>
 

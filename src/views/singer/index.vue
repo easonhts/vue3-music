@@ -6,18 +6,30 @@
       </div>
       <div @click="toogle" class="more">选择</div>
     </div>
-    <List :data="singerList" />
+    <div class="singer-list">
+      <Scroll class="singer-content">
+        <List @click="gotoDetail" :data="singerList" />
+      </Scroll>
+    </div>
   </div>
   <transition name="fly">
     <Select v-show="bol" @close="toogle" @save="handleSave" />
   </transition>
+
+  <router-view v-slot="{ Component }"> 
+    <transition name='fly'>
+      <component :is='Component'></component>
+    </transition>
+  </router-view>
 </template>
 
 <script lang="ts">
 import { defineComponent, ref, computed, onMounted, reactive } from 'vue'
+import { useRouter } from 'vue-router'
 import { ALPHA_TYPE } from '@/lib/constant'
 import { useBoolean } from '@/hooks/index'
 import { getSingerList } from '@/service/singer'
+import { Scroll } from '@/components/index'
 
 import Tag from './components/Tag/index.vue'
 import Select from './components/Select/index.vue'
@@ -26,15 +38,16 @@ import List from './components/List/index.vue'
 type SelectTags = Record<string, { label: string; value: string }>
 
 export default defineComponent({
-  components: { Tag, Select, List },
+  components: { Tag, Select, List, Scroll },
   setup() {
     const { bol, toogle } = useBoolean(false)
     const selectTag = ref<SelectTags>({
       alpha: ALPHA_TYPE[0]
     })
     const params = reactive({ limit: 30, page: 0 })
-
     const singerList = ref<Music.Api.Singer.HotList.Get.Res>()
+
+    const router = useRouter()
 
     const tags = computed(() => {
       return Object.values(selectTag.value)
@@ -69,7 +82,11 @@ export default defineComponent({
       }
     }
 
-    return { bol, toogle, handleSave, tags, singerList }
+    const gotoDetail = (id: number) => {
+      router.push(`/singer/detail/${id}`)
+    }
+
+    return { bol, toogle, handleSave, tags, singerList, gotoDetail }
   }
 })
 </script>
@@ -91,6 +108,16 @@ export default defineComponent({
     .more {
       color: @color-theme;
       font-size: @font-size-medium;
+    }
+  }
+  .singer-list {
+    position: fixed;
+    width: 100%;
+    top: 264px;
+    bottom: 0;
+    .singer-content {
+      height: 100%;
+      overflow: hidden;
     }
   }
 }

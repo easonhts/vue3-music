@@ -1,41 +1,35 @@
 <template>
-  <div class="singer-list">
-    <Scroll class="singer-content">
-      <ul>
-        <li v-for="item in data" :key="item.id" class="singer-info">
-          <LazyImg class="photo" :src="item.img1v1Url" />
-          <div class="name">{{ item.name }}</div>
-        </li>
-      </ul>
-    </Scroll>
-  </div>
+  <ul class="container">
+    <li v-for="item in data" @click="handleClick(item.id)" :key="item.id" class="singer-info">
+      <LazyImg class="photo" :src="item.img1v1Url" />
+      <div class="name">{{ item.name }}</div>
+    </li>
+  </ul>
 </template>
 
 <script lang="ts">
 import { defineComponent, PropType } from 'vue'
-import { Scroll } from '@/components/index'
 
 export default defineComponent({
-  components: { Scroll },
   name: 'list',
   props: {
     data: {
       type: Array as PropType<Music.Api.Singer.HotList.Get.Res>
+    }
+  },
+  emits: {
+    click: (id : number) => typeof id === 'number'
+  },
+  methods: {
+    handleClick(id: number) {
+      this.$emit('click', id)
     }
   }
 })
 </script>
 
 <style lang="less" scoped>
-.singer-list {
-  position: fixed;
-  width: 100%;
-  top: 264px;
-  bottom: 0;
-  .singer-content {
-    height: 100%;
-    overflow: hidden;
-  }
+.container {
   .singer-info {
     display: flex;
     align-items: center;

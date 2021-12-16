@@ -1,5 +1,6 @@
 export { default as Header } from './Header/index.vue'
 export { default as Tab } from './Tab/index.vue'
+export { default as MusicList } from './MusicList/index.vue'
 
 export { default as LazyImg } from './base/LazyImg/index.vue'
 export { default as Slider } from './base/Slider/index.vue'

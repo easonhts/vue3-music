@@ -19,3 +19,15 @@ export const getHotSingerList = (params?: Music.Utils.Request.Pagination.Params)
 export const getSingerList = (params: Music.Utils.Request.Pagination.Params & Music.Api.Singer.List.Get.Req) => {
   return request<SingerList>({ method: 'GET', url: '/artist/list', params })
 }
+
+
+/**
+ * 歌手详情
+ * /artists
+ */
+
+
+/**
+ * 获取歌曲url
+ * /song/detail?ids=
+ */
