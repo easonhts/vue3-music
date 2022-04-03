@@ -23,16 +23,19 @@ export default defineComponent({
 
 <style lang="less" scoped>
 .tabs {
-  height: 88px;
-  align-items: center;
   display: flex;
+  align-items: center;
+  height: 88px;
   font-size: @font-size-medium;
+
   .tab-item {
     flex: 1;
     text-align: center;
+
     .tab-link {
       color: @color-text-l;
     }
+
     &.router-link-active {
       .tab-link {
         color: @color-theme;

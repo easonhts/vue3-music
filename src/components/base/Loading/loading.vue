@@ -22,8 +22,3 @@ export default defineComponent({
   }
 })
 </script>
-
-<style lang="less" scoped>
-.loading {
-}
-</style>

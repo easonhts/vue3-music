@@ -36,13 +36,15 @@ export default defineComponent({
 .music-list {
   position: relative;
   height: 100%;
+
   .back {
     position: absolute;
     top: 0;
     left: 12px;
+
     .icon-back {
-      padding: 20px;
       display: block;
+      padding: 20px;
       color: @color-theme;
     }
   }
@@ -51,12 +53,12 @@ export default defineComponent({
     position: absolute;
     top: 0;
     left: 10%;
-    width: 80%;
     z-index: 20;
-    text-align: center;
-    line-height: 72px;
+    width: 80%;
     font-size: @font-size-large;
+    line-height: 72px;
     color: @color-theme;
+    text-align: center;
   }
 }
 </style>

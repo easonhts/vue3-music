@@ -92,53 +92,57 @@ export default defineComponent({
 
 <style lang="less" scoped>
 .container {
-  background: @color-background;
   position: absolute;
   top: 0;
-  left: 0;
   right: 0;
   bottom: 0;
+  left: 0;
   padding: 0 30px;
+  background: @color-background;
   transform-origin: right bottom;
 
   .tip-text {
+    margin-right: 10px;
     font-size: @font-size-medium;
     color: @color-theme;
-    margin-right: 10px;
   }
 
   .operation {
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
     height: 66px;
-    color: @color-theme;
     font-size: @font-size-small;
+    color: @color-theme;
   }
+
   .select-tag {
     display: flex;
+    align-items: center;
     justify-content: start;
     height: 88px;
-    align-items: center;
   }
 
   .classify {
     display: flex;
     margin-bottom: 30px;
+
     .classify-key {
+      margin-right: 10px;
       font-size: @font-size-medium;
       color: @color-theme;
       white-space: nowrap;
-      margin-right: 10px;
     }
+
     .classify-value {
       display: flex;
       flex-wrap: wrap;
+
       .alpha {
-        text-align: center;
         min-width: 45px;
         margin-right: 18px;
         margin-bottom: 12px;
+        text-align: center;
       }
     }
   }

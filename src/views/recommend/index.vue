@@ -51,34 +51,39 @@ export default defineComponent({
 <style lang="less" scoped>
 .recommend {
   position: fixed;
-  width: 100%;
   top: 176px;
   bottom: 0;
+  width: 100%;
   overflow: scroll;
+
   .recommend-content {
     height: 100%;
     overflow: hidden;
   }
+
   .title {
     height: 88px;
-    line-height: 88px;
-    text-align: center;
-    color: @color-theme;
     font-size: @font-size-small;
+    line-height: 88px;
+    color: @color-theme;
+    text-align: center;
   }
+
   .list {
     display: flex;
     flex-wrap: wrap;
     padding: 0 15px;
     color: @color-theme-d;
+
     .item {
       position: relative;
       width: 230px;
       margin-bottom: 24px;
       // overflow: hidden;
       &:nth-of-type(3n -1) {
-        margin: 0px 15px 15px 15px;
+        margin: 0 15px 15px 15px;
       }
+
       .img {
         display: block;
         width: 100%;
@@ -86,20 +91,22 @@ export default defineComponent({
         border-radius: 10px;
         opacity: 0.6;
       }
+
       .desc {
         .mutli-line-no-wrap(2);
-        font-size: @font-size-small;
+
         padding-top: 20px;
+        font-size: @font-size-small;
       }
 
       .play-count {
         position: absolute;
         top: 6px;
         right: 10px;
-        font-size: @font-size-small;
         padding: 2px 8px;
-        border-radius: 16px;
+        font-size: @font-size-small;
         background: @color-background-d;
+        border-radius: 16px;
       }
     }
   }

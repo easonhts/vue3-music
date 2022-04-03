@@ -95,26 +95,30 @@ export default defineComponent({
 .singer {
   .tab-bar {
     display: flex;
+    align-items: center;
     justify-content: space-between;
     height: 88px;
-    align-items: center;
     padding: 0 60px 0 60px;
     background: #333;
+
     .tag-list {
       display: flex;
       align-items: center;
       justify-content: start;
     }
+
     .more {
-      color: @color-theme;
       font-size: @font-size-medium;
+      color: @color-theme;
     }
   }
+
   .singer-list {
     position: fixed;
-    width: 100%;
     top: 264px;
     bottom: 0;
+    width: 100%;
+
     .singer-content {
       height: 100%;
       overflow: hidden;

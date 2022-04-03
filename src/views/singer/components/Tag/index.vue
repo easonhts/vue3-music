@@ -31,32 +31,34 @@ export default defineComponent({
 
 <style lang="less" scoped>
 .tag {
-  cursor: pointer;
-  display: inline-block;
-  font-size: @font-size-small;
-  padding: 6px 16px;
-  border-radius: 18px;
-  margin-right: 10px;
   position: relative;
+  display: inline-block;
+  padding: 6px 16px;
+  margin-right: 10px;
+  font-size: @font-size-small;
+  cursor: pointer;
+  border-radius: 18px;
+
   .delete {
     position: absolute;
     top: -10px;
     right: -10px;
-    height: 30px;
     width: 30px;
+    height: 30px;
     line-height: 30px;
     text-align: center;
   }
 }
 
 .red {
-  background: @color-background-sub;
   color: @color-theme;
+  background: @color-background-sub;
 }
 
 .gray {
-  background: @color-background-d;
   color: @color-text-l;
+  background: @color-background-d;
+
   &:hover {
     color: @color-theme;
   }

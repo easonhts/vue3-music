@@ -34,11 +34,13 @@ export default defineComponent({
     display: flex;
     align-items: center;
     padding: 40px 0 40px 60px;
+
     .photo {
       width: 100px;
       height: 100px;
       border-radius: 50%;
     }
+
     .name {
       margin-left: 40px;
       font-size: @font-size-medium;

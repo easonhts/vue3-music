@@ -15,26 +15,28 @@ export default {
 <style lang="less" scoped>
 .header {
   height: 88px;
-  text-align: center;
-  color: @color-theme;
   font-size: 0;
+  color: @color-theme;
+  text-align: center;
+
   .icon {
     display: inline-block;
-    vertical-align: top;
-    margin-top: 12px;
     width: 64px;
     height: 64px;
+    margin-top: 12px;
     margin-right: 18px;
+    overflow: hidden;
+    vertical-align: top;
     background: url(./naruto.webp) no-repeat;
     background-size: 64px 64px;
-    overflow: hidden;
     border-radius: 50%;
   }
+
   .text {
     display: inline-block;
-    vertical-align: top;
-    line-height: 88px;
     font-size: @font-size-large;
+    line-height: 88px;
+    vertical-align: top;
   }
 }
 </style>

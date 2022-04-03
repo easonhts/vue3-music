@@ -14,5 +14,3 @@ export default defineComponent({
   components: { Header, Tab }
 })
 </script>
-<style lang="less">
-</style>
