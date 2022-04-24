@@ -1,14 +1,14 @@
-const { defineConfig } = require("vite");
-const vue = require("@vitejs/plugin-vue");
+import { defineConfig } from 'vite'
+import vue from '@vitejs/plugin-vue'
 
-const path = require("path");
+import path from 'path'
 
-module.exports = defineConfig({
+export default defineConfig({
   plugins: [vue()],
   resolve: {
     alias: {
-      "@": path.resolve(__dirname, "src"),
-    },
+      '@': path.resolve(__dirname, 'src')
+    }
   },
   css: {
     preprocessorOptions: {
@@ -16,19 +16,19 @@ module.exports = defineConfig({
       //   additionalData: '@import "@/styles/variable.scss";',
       // },
       less: {
-        additionalData: '@import "@/styles/variable.less";',
-      },
-    },
+        additionalData: '@import "@/styles/variable.less";'
+      }
+    }
   },
   server: {
     port: 8080,
     proxy: {
-      "/api": {
+      '/api': {
         // 服务是本地node服务 见https://github.com/Binaryify/NeteaseCloudMusicApi
-        target: "http://localhost:3000",
+        target: 'http://localhost:3000',
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, ''),
-      },
-    },
-  },
-});
+        rewrite: (path) => path.replace(/^\/api/, '')
+      }
+    }
+  }
+})
