@@ -28,19 +28,7 @@ module.exports = {
     '@typescript-eslint/no-explicit-any': 'off',
     '@typescript-eslint/no-var-requires': 'off',
     '@typescript-eslint/no-empty-function': 'off',
-    'vue/custom-event-name-casing': 'off',
-    'vue/multi-word-component-names': 'off',
     '@typescript-eslint/explicit-module-boundary-types': 'off',
-    'no-var': 'error',
-    'no-undef': 'off',
-    'no-use-before-define': 'off',
-    // 'no-use-before-define': [
-    //   'error',
-    //   {
-    //     functions: false,
-    //     classes: true,
-    //   },
-    // ],
     '@typescript-eslint/no-use-before-define': 'off',
     // '@typescript-eslint/no-use-before-define': [
     //   'error',
@@ -53,7 +41,20 @@ module.exports = {
     '@typescript-eslint/ban-types': 'off',
     '@typescript-eslint/no-non-null-assertion': 'off',
     '@typescript-eslint/no-unused-vars': 'error',
-    'no-unused-vars': 'error',
+    'vue/custom-event-name-casing': 'off',
+    'vue/multi-word-component-names': 'off',
+    'no-var': 'error',
+    'no-undef': 'off',
+    'no-use-before-define': 'off',
+    'max-depth': ['error', 2],
+    'max-params': ['warn', 3],
+    // 'no-use-before-define': [
+    //   'error',
+    //   {
+    //     functions: false,
+    //     classes: true,
+    //   },
+    // ],
     'space-before-function-paren': 'off',
     quotes: ['error', 'single'],
     'comma-dangle': ['error', 'never']

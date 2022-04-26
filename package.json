@@ -7,7 +7,7 @@
     "build": "vue-tsc --noEmit && vite build",
     "preview": "vite preview",
     "lint:style": "stylelint 'src/**/*.{vue,css,scss}' --fix",
-    "lint:script": "eslint 'src/**/*.{vue,ts}' --fix",
+    "lint:script": "eslint 'src/**/*.{vue,ts}' --fix --quiet ./",
     "prepare": "husky install"
   },
   "lint-staged": {
