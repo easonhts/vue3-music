@@ -1,3 +1,0 @@
-{
-  "src/**/*.{vue,css,less}": ["stylelint --cache --fix", "git add"]
-}

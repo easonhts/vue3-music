@@ -14,15 +14,15 @@ const useSlider = (wrapperRef: Ref) => {
   const slider = ref<BScroll>()
 
   onMounted(() => {
-    const sliderVal = slider.value = new BScroll(wrapperRef.value, {
+    const sliderVal = (slider.value = new BScroll(wrapperRef.value, {
       click: true,
       scrollX: true,
       scrollY: false,
       momentum: false,
       bounce: false,
       probeType: 3,
-      slide: true,
-    })
+      slide: true
+    }))
 
     sliderVal.on('slidePageChanged', ({ pageX }: { pageX: number }) => {
       currentIndex.value = pageX
