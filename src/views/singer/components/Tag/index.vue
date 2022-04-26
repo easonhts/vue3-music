@@ -9,7 +9,7 @@
 import { defineComponent, PropType } from 'vue'
 
 export default defineComponent({
-  name: 'tag',
+  name: 'Tag',
   props: {
     clear: {
       type: Boolean,

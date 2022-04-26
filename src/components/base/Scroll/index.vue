@@ -26,14 +26,14 @@ const scrollEmits = {
 }
 
 export default defineComponent({
-  name: 'scroll',
+  name: 'Scroll',
   props: {
     option: {
       type: Object as PropType<Options>,
       default: () => {
         return {
           click: true,
-          probeType: 0,
+          probeType: 0
         }
       }
     },

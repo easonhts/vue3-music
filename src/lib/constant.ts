@@ -8,7 +8,7 @@ export const SUCCESS_CODE = 200
 
 // 歌手分类
 export const SINGER_TYPE = [
-  { label: '全部', value: '-1'},
+  { label: '全部', value: '-1' },
   { label: '男歌手', value: '1' },
   { label: '女歌手', value: '2' },
   { label: '乐队', value: '3' }

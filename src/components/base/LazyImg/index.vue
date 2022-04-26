@@ -1,12 +1,12 @@
 <template>
-  <img v-lazy="src">
+  <img v-lazy="src" />
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
 
 export default defineComponent({
-  name: 'lazyImg',
+  name: 'LazyImg',
   props: {
     src: {
       type: String,

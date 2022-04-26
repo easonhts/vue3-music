@@ -1,15 +1,15 @@
 <template>
-  <div class="slider" ref="wrapperRef">
+  <div ref="wrapperRef" class="slider">
     <div class="slider-group">
-      <div class="slider-page" v-for="item in data" :key="item.imageUrl">
+      <div v-for="item in data" :key="item.imageUrl" class="slider-page">
         <img :src="item.imageUrl" />
       </div>
     </div>
     <div class="dots-wrapper">
       <span
-        class="dot"
         v-for="(item, index) in data"
         :key="item.imageUrl"
+        class="dot"
         :class="{ active: currentIndex === index }"
       ></span>
     </div>

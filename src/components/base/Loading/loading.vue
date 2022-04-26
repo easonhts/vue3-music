@@ -9,7 +9,7 @@
 import { defineComponent } from 'vue'
 
 export default defineComponent({
-  name: 'loading',
+  name: 'Loading',
   data() {
     return {
       message: '正在载入。。。'

@@ -15,10 +15,10 @@ type EmitEvent = (type: EmitType, value: any) => void
 const useScroll = (wrapperRef: Ref, options: Options, emit: EmitEvent) => {
   const scroll = ref<BScroll>()
   onMounted(() => {
-    const scrollVal: BScroll = scroll.value = new BScroll(wrapperRef.value, {
+    const scrollVal: BScroll = (scroll.value = new BScroll(wrapperRef.value, {
       observeDOM: true,
       ...options
-    })
+    }))
 
     if (options.probeType) {
       scrollVal.on('scroll', (pos: any) => {

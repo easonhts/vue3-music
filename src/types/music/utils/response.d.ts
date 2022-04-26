@@ -10,7 +10,7 @@ declare namespace Music {
 
       namespace Pagination {
         type Data<T extends Record<string, any>> = Result<T> & {
-          code: number,
+          code: number
           more: boolean
         }
       }

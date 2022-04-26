@@ -8,7 +8,7 @@
     <div class="select-tag">
       <div class="tip-text">已选：</div>
       <div v-for="(item, key) in selectTags" :key="key">
-        <Tag v-if="item" @onDelete="handleDelete(key)" clear>
+        <Tag v-if="item" clear @onDelete="handleDelete(key)">
           {{ item.label }}
         </Tag>
       </div>
@@ -17,7 +17,7 @@
     <div class="classify">
       <div class="classify-key">语种：</div>
       <div class="classify-value">
-        <Tag v-for="item in SINGER_AREA" @click="handleSelect('area', item)" :type="'gray'" :key="item.value">
+        <Tag v-for="item in SINGER_AREA" :key="item.value" :type="'gray'" @click="handleSelect('area', item)">
           {{ item.label }}
         </Tag>
       </div>
@@ -26,7 +26,7 @@
     <div class="classify">
       <div class="classify-key">分类：</div>
       <div class="classify-value">
-        <Tag v-for="item in SINGER_TYPE" @click="handleSelect('type', item)" :type="'gray'" :key="item.value">
+        <Tag v-for="item in SINGER_TYPE" :key="item.value" :type="'gray'" @click="handleSelect('type', item)">
           {{ item.label }}
         </Tag>
       </div>
@@ -36,11 +36,11 @@
       <div class="classify-key">字母：</div>
       <div class="classify-value">
         <Tag
-          class="alpha"
           v-for="item in ALPHA_TYPE"
-          @click="handleSelect('alpha', item)"
-          :type="'gray'"
           :key="item.value"
+          class="alpha"
+          :type="'gray'"
+          @click="handleSelect('alpha', item)"
         >
           {{ item.label }}
         </Tag>
@@ -59,6 +59,7 @@ type SelectTags = Record<string, { label: string; value: string } | undefined>
 
 export default defineComponent({
   components: { Tag },
+  emits: ['save', 'close'],
   data() {
     return {
       ALPHA_TYPE,
@@ -71,7 +72,6 @@ export default defineComponent({
       } as SelectTags
     }
   },
-  emits: ['save', 'close'],
   methods: {
     handleSelect(key: string, value: { label: string; value: string }) {
       this.selectTags[key] = value

@@ -9,7 +9,7 @@ import { defineComponent } from 'vue'
 import { MusicList } from '@/components/index'
 
 export default defineComponent({
-  components: {MusicList},
+  components: { MusicList },
   setup() {
     return {}
   }

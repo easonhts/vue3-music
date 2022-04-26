@@ -20,12 +20,10 @@ export const getSingerList = (params: Music.Utils.Request.Pagination.Params & Mu
   return request<SingerList>({ method: 'GET', url: '/artist/list', params })
 }
 
-
 /**
  * 歌手详情
  * /artists
  */
-
 
 /**
  * 获取歌曲url

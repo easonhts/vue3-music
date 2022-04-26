@@ -3,7 +3,6 @@
 
 // import Loading from './loading.vue'
 
-
 // function createLoadingLikeDirective(Comp) {
 //   return {
 //     mounted(el, binding) {

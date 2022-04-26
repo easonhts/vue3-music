@@ -4,11 +4,11 @@
       <div class="tag-list">
         <Tag v-for="item in tags" :key="item?.value">{{ item?.label }}</Tag>
       </div>
-      <div @click="toogle" class="more">选择</div>
+      <div class="more" @click="toogle">选择</div>
     </div>
     <div class="singer-list">
       <Scroll class="singer-content">
-        <List @click="gotoDetail" :data="singerList" />
+        <List :data="singerList" @click="gotoDetail" />
       </Scroll>
     </div>
   </div>
@@ -16,9 +16,9 @@
     <Select v-show="bol" @close="toogle" @save="handleSave" />
   </transition>
 
-  <router-view v-slot="{ Component }"> 
-    <transition name='fly'>
-      <component :is='Component'></component>
+  <router-view v-slot="{ Component }">
+    <transition name="fly">
+      <component :is="Component"></component>
     </transition>
   </router-view>
 </template>
