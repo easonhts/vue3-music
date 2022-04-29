@@ -1,10 +1,9 @@
 import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
-
-const Recommend = () => import(/* webpackChunkName: "recommend" */ '@/views/recommend/index.vue')
-const Search = () => import(/* webpackChunkName: "search" */ '@/views/search/index.vue')
-const TopList = () => import(/* webpackChunkName: "top-list" */ '@/views/top-list/index.vue')
-const Singer = () => import(/* webpackChunkName: "singer" */ '@/views/singer/index.vue')
-const SingerDetail = () => import(/* webpackChunkName: "SingerDetail" */ '@/views/singer/detail.vue')
+import Recommend from '@/views/recommend/index.vue'
+import Search from '@/views/search/index.vue'
+import TopList from '@/views/top-list/index.vue'
+import Singer from '@/views/singer/index.vue'
+import SingerDetail from '@/views/singer/detail.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {

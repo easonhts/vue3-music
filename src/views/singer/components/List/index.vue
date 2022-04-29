@@ -1,32 +1,19 @@
+<script setup lang="ts">
+const props = defineProps<{ data: Music.Api.Singer.HotList.Get.Res }>()
+
+const emit = defineEmits<{
+  (e: 'click', id: number): void
+}>()
+</script>
+
 <template>
   <ul class="container">
-    <li v-for="item in data" :key="item.id" class="singer-info" @click="handleClick(item.id)">
+    <li v-for="item in props.data" :key="item.id" class="singer-info" @click="emit('click', item.id)">
       <LazyImg class="photo" :src="item.img1v1Url" />
       <div class="name">{{ item.name }}</div>
     </li>
   </ul>
 </template>
-
-<script lang="ts">
-import { defineComponent, PropType } from 'vue'
-
-export default defineComponent({
-  name: 'List',
-  props: {
-    data: {
-      type: Array as PropType<Music.Api.Singer.HotList.Get.Res>
-    }
-  },
-  emits: {
-    click: (id: number) => typeof id === 'number'
-  },
-  methods: {
-    handleClick(id: number) {
-      this.$emit('click', id)
-    }
-  }
-})
-</script>
 
 <style lang="less" scoped>
 .container {

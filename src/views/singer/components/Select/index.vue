@@ -1,14 +1,45 @@
+<script setup lang="ts">
+import { reactive } from 'vue'
+import { SINGER_TYPE, SINGER_AREA, ALPHA_TYPE } from '@/lib/constant'
+
+import Tag from '../Tag/index.vue'
+
+type SelectTags = Record<string, { label: string; value: string }>
+
+const emit = defineEmits<{
+  (e: 'save', val: SelectTags): void
+  (e: 'close'): void
+}>()
+
+const selectTags = reactive<Partial<SelectTags>>({
+  area: undefined,
+  type: undefined,
+  alpha: undefined
+})
+
+const handleSelect = (key: string, value: { label: string; value: string }) => {
+  selectTags[key] = value
+}
+const handleDelete = (key: string) => {
+  selectTags[key] = undefined
+}
+
+const handleSave = () => {
+  emit('save', JSON.parse(JSON.stringify(selectTags)))
+  emit('close')
+}
+</script>
 <template>
   <div class="container">
     <div class="operation">
-      <div class="close" @click="handleClose"><i class="icon-back"></i></div>
+      <div class="close" @click="emit('close')"><i class="icon-back"></i></div>
       <div class="save" @click="handleSave">保存</div>
     </div>
 
     <div class="select-tag">
       <div class="tip-text">已选：</div>
       <div v-for="(item, key) in selectTags" :key="key">
-        <Tag v-if="item" clear @onDelete="handleDelete(key)">
+        <Tag v-if="item" clear @delete="handleDelete(key)">
           {{ item.label }}
         </Tag>
       </div>
@@ -17,7 +48,7 @@
     <div class="classify">
       <div class="classify-key">语种：</div>
       <div class="classify-value">
-        <Tag v-for="item in SINGER_AREA" :key="item.value" :type="'gray'" @click="handleSelect('area', item)">
+        <Tag v-for="item in SINGER_AREA" :key="item.value" type="gray" @click="handleSelect('area', item)">
           {{ item.label }}
         </Tag>
       </div>
@@ -26,7 +57,7 @@
     <div class="classify">
       <div class="classify-key">分类：</div>
       <div class="classify-value">
-        <Tag v-for="item in SINGER_TYPE" :key="item.value" :type="'gray'" @click="handleSelect('type', item)">
+        <Tag v-for="item in SINGER_TYPE" :key="item.value" type="gray" @click="handleSelect('type', item)">
           {{ item.label }}
         </Tag>
       </div>
@@ -39,7 +70,7 @@
           v-for="item in ALPHA_TYPE"
           :key="item.value"
           class="alpha"
-          :type="'gray'"
+          type="gray"
           @click="handleSelect('alpha', item)"
         >
           {{ item.label }}
@@ -48,47 +79,6 @@
     </div>
   </div>
 </template>
-
-<script lang="ts">
-import { defineComponent } from 'vue'
-import { SINGER_TYPE, SINGER_AREA, ALPHA_TYPE } from '@/lib/constant'
-
-import Tag from '../Tag/index.vue'
-
-type SelectTags = Record<string, { label: string; value: string } | undefined>
-
-export default defineComponent({
-  components: { Tag },
-  emits: ['save', 'close'],
-  data() {
-    return {
-      ALPHA_TYPE,
-      SINGER_TYPE,
-      SINGER_AREA,
-      selectTags: {
-        area: undefined,
-        type: undefined,
-        alpha: undefined
-      } as SelectTags
-    }
-  },
-  methods: {
-    handleSelect(key: string, value: { label: string; value: string }) {
-      this.selectTags[key] = value
-    },
-    handleDelete(key: string) {
-      this.selectTags[key] = undefined
-    },
-    handleSave() {
-      this.$emit('save', JSON.parse(JSON.stringify(this.selectTags)))
-      this.$emit('close')
-    },
-    handleClose() {
-      this.$emit('close')
-    }
-  }
-})
-</script>
 
 <style lang="less" scoped>
 .container {

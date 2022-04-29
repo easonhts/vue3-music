@@ -14,9 +14,9 @@ declare namespace Music {
       namespace List {
         namespace Get {
           type Req = {
-            area: string
-            initial: string
-            type: string
+            area?: string
+            initial?: string
+            type?: string
           }
         }
       }

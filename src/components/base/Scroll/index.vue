@@ -1,99 +1,51 @@
-<template>
-  <div ref="wrapperRef">
-    <slot></slot>
-  </div>
-</template>
-
-<script lang="ts">
-import { defineComponent, ref, toRefs, PropType, onMounted, onUnmounted, onActivated, onDeactivated } from 'vue'
+<script setup lang="ts">
+import { ref, toRefs, onMounted, onUnmounted, onActivated, onDeactivated } from 'vue'
 import BScroll from '@better-scroll/core'
-import ObserveDOM from '@better-scroll/observe-dom'
-import Pulldown from '@better-scroll/pull-down'
-import Pullup from '@better-scroll/pull-up'
+import ObserveDOM from '@better-scroll/observe-dom' // 监听content 以及 content 子元素 DOM 改变 重新refresh
 
 import type { Options } from '@better-scroll/core'
 
-BScroll.use(ObserveDOM).use(Pulldown).use(Pullup)
+BScroll.use(ObserveDOM)
 
-interface ScrollPosition {
-  x: number
-  y: number
-}
+const props = withDefaults(defineProps<{ option?: Options }>(), {
+  option: () => ({
+    click: true,
+    probeType: 0
+  })
+})
 
-const scrollEmits = {
-  iScroll: (pos: ScrollPosition) => typeof pos.x === 'number',
-  handleAction: () => Promise
-}
+const { option } = toRefs(props)
 
-export default defineComponent({
-  name: 'Scroll',
-  props: {
-    option: {
-      type: Object as PropType<Options>,
-      default: () => {
-        return {
-          click: true,
-          probeType: 0
-        }
-      }
-    },
-    hasMore: {
-      type: Boolean,
-      default: false
-    }
-  },
-  emits: scrollEmits,
-  setup(props, { emit }) {
-    const wrapperRef = ref<HTMLElement>()
-    const scroll = ref<BScroll>()
+const wrapperRef = ref<HTMLElement>()
+const scroll = ref<BScroll>()
 
-    // const isPullUp = ref(false)
-
-    // const { option, hasMore } = toRefs(props)
-    const { option } = toRefs(props)
-
-    onMounted(() => {
-      if (wrapperRef.value) {
-        scroll.value = new BScroll(wrapperRef.value, {
-          observeDOM: true,
-          ...option.value
-        })
-      }
-
-      if (option.value.probeType) {
-        scroll.value?.on('scroll', (pos: ScrollPosition) => {
-          emit('iScroll', pos)
-        })
-      }
-
-      // if (option.value.pullUpLoad) {
-      //   scroll.value?.on('pullingUp', async () => {
-      //     if (hasMore.value && !isPullUp.value) {
-      //       isPullUp.value = true
-      //       // 这里不可以 vue底层事件默认 应该是不行的
-      //       await emit('handleAction')
-      //       scroll.value?.finishPullUp()
-      //       scroll.value?.refresh()
-      //       isPullUp.value = false
-      //     }
-      //   })
-      // }
+onMounted(() => {
+  if (wrapperRef.value) {
+    scroll.value = new BScroll(wrapperRef.value, {
+      observeDOM: true,
+      ...option.value
     })
-
-    onActivated(() => {
-      scroll.value?.enable()
-      scroll.value?.refresh()
-    })
-
-    onDeactivated(() => {
-      scroll.value?.disable()
-    })
-
-    onUnmounted(() => {
-      scroll.value?.destroy()
-    })
-
-    return { wrapperRef, scroll }
   }
 })
+
+onActivated(() => {
+  scroll.value?.enable()
+  scroll.value?.refresh()
+})
+
+onDeactivated(() => {
+  scroll.value?.disable()
+})
+
+onUnmounted(() => {
+  scroll.value?.destroy()
+})
 </script>
+<template>
+  <div ref="wrapperRef">
+    <!-- Scroll 滚动的是 Scroll firstChild -->
+    <div>
+      <slot></slot>
+    </div>
+  </div>
+</template>

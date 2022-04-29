@@ -5,7 +5,7 @@ import vue from '@vitejs/plugin-vue'
 import path from 'path'
 
 export default defineConfig({
-  // plugins: [vue(), viteEslint()],
+  // plugins: [vue({ reactivityTransform: true }), viteEslint()],
   plugins: [vue()],
   resolve: {
     alias: {

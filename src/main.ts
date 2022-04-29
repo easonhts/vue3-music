@@ -11,6 +11,7 @@ import lazyLoading from '@/components/Header/naruto.webp'
 
 import '@/styles/index.less'
 
+const store = createPinia()
 const app = createApp(App)
 
 app.component('LazyImg', LazyImg)
@@ -20,5 +21,5 @@ app
     loading: lazyLoading
   })
   .use(router)
-  .use(createPinia())
+  .use(store)
   .mount('#app')

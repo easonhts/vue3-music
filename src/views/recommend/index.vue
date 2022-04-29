@@ -1,52 +1,51 @@
+<script setup lang="ts">
+import { reactive, onMounted } from 'vue'
+import { Slider, Scroll } from '@/components/index'
+import { getBanner, getRecommendList } from '@/service/recommendService'
+import { computedPlayCount } from '@/lib/utils'
+
+const banners = reactive<Music.Api.Banner.Get.res>([])
+const recommendList = reactive<Music.Api.Personalized.Get.Res>([])
+
+onMounted(() => {
+  getBannersOrRecommendList()
+})
+
+const getBannersOrRecommendList = async () => {
+  const { banners: bannerList } = await getBanner()
+
+  const { result } = await getRecommendList()
+
+  banners.push(...bannerList)
+
+  const list = result.map((item) => ({
+    ...item,
+    playCount: computedPlayCount(item.playCount)
+  }))
+
+  recommendList.push(...list)
+}
+</script>
+
 <template>
   <div class="recommend">
-    <!-- Scroll 滚动的是 Scroll firstChild -->
     <Scroll class="recommend-content">
-      <div>
-        <Slider v-if="banners.length" :data="banners" />
-        <div class="recommend-list">
-          <div class="title">推荐歌单</div>
-          <div class="list">
-            <figure v-for="item in recommendList" :key="item.id" class="item">
-              <LazyImg class="img" :src="item.picUrl" />
-              <div class="play-count">{{ item.playCount }}万</div>
-              <figcaption class="desc">
-                {{ item.name }}
-              </figcaption>
-            </figure>
-          </div>
+      <Slider v-if="banners.length" :data="banners" />
+      <div class="recommend-list">
+        <div class="title">推荐歌单</div>
+        <div class="list">
+          <figure v-for="item in recommendList" :key="item.id" class="item">
+            <LazyImg class="img" :src="item.picUrl" />
+            <div class="play-count">{{ item.playCount }}万</div>
+            <figcaption class="desc">
+              {{ item.name }}
+            </figcaption>
+          </figure>
         </div>
       </div>
     </Scroll>
   </div>
 </template>
-
-<script lang="ts">
-import { defineComponent } from 'vue'
-import { Slider, Scroll } from '@/components/index'
-import { getBanner, getRecommendList } from '@/service/recommendService'
-import { computedPlayCount } from '@/lib/utils'
-
-export default defineComponent({
-  components: { Slider, Scroll },
-  data() {
-    return {
-      banners: [] as Music.Api.Banner.Get.res,
-      recommendList: [] as Music.Api.Personalized.Get.Res
-    }
-  },
-  async created() {
-    const { banners } = await getBanner()
-    this.banners = banners
-
-    const { result } = await getRecommendList()
-    this.recommendList = result.map((item) => ({
-      ...item,
-      playCount: computedPlayCount(item.playCount)
-    }))
-  }
-})
-</script>
 
 <style lang="less" scoped>
 .recommend {
@@ -79,6 +78,7 @@ export default defineComponent({
       position: relative;
       width: 230px;
       margin-bottom: 24px;
+
       // overflow: hidden;
       &:nth-of-type(3n -1) {
         margin: 0 15px 15px 15px;

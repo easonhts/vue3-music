@@ -1,3 +1,7 @@
+<script setup lang="ts">
+import { TABS } from './constant'
+</script>
+
 <template>
   <div class="tabs">
     <router-link v-for="item in TABS" :key="item.path" class="tab-item" :to="item.path">
@@ -7,19 +11,6 @@
     </router-link>
   </div>
 </template>
-
-<script lang="ts">
-import { defineComponent } from 'vue'
-import { TABS } from './constant'
-
-export default defineComponent({
-  setup() {
-    return {
-      TABS
-    }
-  }
-})
-</script>
 
 <style lang="less" scoped>
 .tabs {

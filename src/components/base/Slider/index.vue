@@ -1,3 +1,14 @@
+<script setup lang="ts">
+import { ref, toRef } from 'vue'
+import useSlider from './useSlider'
+
+const props = defineProps<{ data: { imageUrl: string }[] }>()
+const data = toRef(props, 'data')
+
+const wrapperRef = ref<HTMLElement>()
+const { currentIndex } = useSlider(wrapperRef)
+</script>
+
 <template>
   <div ref="wrapperRef" class="slider">
     <div class="slider-group">
@@ -15,26 +26,6 @@
     </div>
   </div>
 </template>
-
-<script lang="ts">
-import { defineComponent, PropType, ref } from 'vue'
-import useSlider from './useSlider'
-
-export default defineComponent({
-  props: {
-    data: {
-      type: Array as PropType<{ imageUrl: string }[]>,
-      required: true
-    }
-  },
-  setup() {
-    const wrapperRef = ref<HTMLElement>()
-    const { currentIndex } = useSlider(wrapperRef)
-
-    return { currentIndex, wrapperRef }
-  }
-})
-</script>
 
 <style lang="less" scoped>
 .slider {

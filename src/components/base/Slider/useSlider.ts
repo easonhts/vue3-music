@@ -5,10 +5,6 @@ import Slide from '@better-scroll/slide'
 
 BScroll.use(Slide)
 
-/**
- * @param wrapperRef HTMLElement
- * @returns currentIndex
- */
 const useSlider = (wrapperRef: Ref) => {
   const currentIndex = ref<number>(0)
   const slider = ref<BScroll>()

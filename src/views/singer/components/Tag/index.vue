@@ -1,33 +1,22 @@
+<script setup lang="ts">
+import { toRefs } from 'vue'
+
+const props = withDefaults(defineProps<{ clear?: boolean; type?: 'gray' | 'red' }>(), {
+  type: 'red'
+})
+
+const emit = defineEmits<{
+  (e: 'delete'): void
+}>()
+
+const { type, clear } = toRefs(props)
+</script>
 <template>
   <span class="tag" :class="{ red: type === 'red', gray: type === 'gray' }">
     <slot></slot>
-    <span v-if="clear" class="delete" @click="handleDelete">x</span>
+    <span v-if="clear" class="delete" @click="emit('delete')">x</span>
   </span>
 </template>
-
-<script lang="ts">
-import { defineComponent, PropType } from 'vue'
-
-export default defineComponent({
-  name: 'Tag',
-  props: {
-    clear: {
-      type: Boolean,
-      default: false
-    },
-    type: {
-      type: String as PropType<'gray' | 'red'>,
-      default: 'red'
-    }
-  },
-  emit: ['onDelete'],
-  methods: {
-    handleDelete() {
-      this.$emit('onDelete')
-    }
-  }
-})
-</script>
 
 <style lang="less" scoped>
 .tag {
